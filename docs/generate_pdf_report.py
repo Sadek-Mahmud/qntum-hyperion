@@ -624,6 +624,69 @@ html_content = """<!DOCTYPE html>
     </ul>
   </div>
 
+  <!-- AF-MCP V2 TIERED FAILOVER ARCHITECTURE -->
+  <h1>৬.১ অ্যাডাপ্টিভ ফেইলওভার মাল্টি-লেয়ার ক্রিপ্টোগ্রাফিক পাইপলাইন (AF-MCP v2)</h1>
+  <div class="math-def" style="border-left: 3pt solid #000; padding: 12px; margin: 12px 0;">
+    <p style="font-size: 10pt; font-weight: 700; margin: 0 0 6px 0; color: #000;">
+      Executing all 17 defense-in-depth layers simultaneously creates astronomical computational overhead and processing latency. AF-MCP v2 introduces an optimized, production-ready Tiered Failover Strategy:
+    </p>
+    <p style="margin: 0 0 10px 0; font-size: 9pt; color: #333;">
+      (১৭টি প্রতিরক্ষা স্তরকে একই সাথে একযোগে সমান্তরালভাবে চালাতে গেলে মাত্রাতিরিক্ত কম্পিউটেশনাল ওভারহেড ও লেটেন্সি তৈরি হয়। AF-MCP v2 এই সীমাবদ্ধতা দূর করতে ৩-টায়ারের স্বয়ংক্রিয় ফেইলওভার কৌশল প্রবর্তন করেছে:)
+    </p>
+    <pre style="font-family: monospace; font-size: 7.2pt; line-height: 1.3; background: #f8f8f8; padding: 10px; border: 0.5pt solid #777; overflow-x: auto; margin: 0 0 10px 0;">
+                       ┌────────────────────────────────────────┐
+                       │        Incoming Ciphertext (CT)        │
+                       └───────────────────┬────────────────────┘
+                                           │
+                                           ▼
+                                ┌──────────────────────┐
+                                │   Replay Registry    │──(Duplicate)──► Reject (CT-Dummy Pad)
+                                │  (SHA3 Fingerprint)  │
+                                └──────────┬───────────┘
+                                           │ (Fresh)
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │        T-1: Active Tier (L1+L3)        │
+                       │  • Module-LWE (ISW unmask + NTT)       │
+                       │  • Binary Syndrome Decoding (He=s)     │
+                       │  • IND-CCA2 Fujisaki-Okamoto Re-enc    │
+                       └───────────────────┬────────────────────┘
+                                           │
+                           Pass Nominal    │ Algebraic Anomaly / Tag Mismatch
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │       T-2: Failover Tier (L6+L12)      │
+                       │  • Non-Abelian Quaternions (QAC)       │
+                       │  • CSIDH Supersingular Isogenies       │
+                       └───────────────────┬────────────────────┘
+                                           │
+                         Recovered via T-2 │ Second Failure / Active Intrusion
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │     T-3: Cold Sovereign Tier (L11-L17) │
+                       │  • Artin Braid Group B₈ (Topological)  │
+                       │  • Symmetric Group Ring Z_q[S₈]        │
+                       │  • GF(2²⁵⁶) Polynomial Commitments     │
+                       │  • Recursive ZK-STARK DAG Accumulator  │
+                       │  • Grover Reversal Quantum Tarpit      │
+                       │  • Adversarial Honeypot Trap           │
+                       │  • CONFIRM-TAG-17L Master Sponge Tag   │
+                       └───────────────────┬────────────────────┘
+                                           │
+                                           ▼ (Breach Confirmed)
+                       ┌────────────────────────────────────────┐
+                       │        SYSTEM-WIDE LOCKDOWN            │
+                       │  • Monotonic Non-Downgradable FSM      │
+                       │  • Constant-time dummy SHA3 absorbed   │
+                       └────────────────────────────────────────┘
+    </pre>
+    <ul style="margin: 0; padding-left: 18px; font-size: 8.8pt;">
+      <li><strong>T-1 (Active Tier):</strong> রিয়েল-টাইম স্বাভাবিক ট্রাফিকের জন্য সর্বদা সক্রিয় (লেয়ার ১ ও লেয়ার ৩) — গড় লেটেন্সি মাত্র <strong>১৮.০২ মিলিসেকেন্ড</strong>।</li>
+      <li><strong>T-2 (Failover Tier):</strong> অ্যানোমালি বা সাইড-চ্যানেল এলার্মে তাৎক্ষণিক ব্যাকআপ (লেয়ার ৬ ও লেয়ার ১২) — গড় লেটেন্সি মাত্র <strong>১৮.১৭ মিলিসেকেন্ড</strong>।</li>
+      <li><strong>T-3 (Cold Sovereign Tier):</strong> গভীর সাইবার আক্রমণ বা বিচ্যুতির মুখে সর্বোচ্চ সার্বভৌমিক প্রতিরক্ষা (লেয়ার ১১-১৭) — গড় লেটেন্সি <strong>৩২.৩৭ মিলিসেকেন্ড</strong>।</li>
+    </ul>
+  </div>
+
   <!-- CONCLUSION -->
   <h1>৭. প্রাতিষ্ঠানিক বৈজ্ঞানিক উপসংহার</h1>
   <p>

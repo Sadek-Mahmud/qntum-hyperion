@@ -251,6 +251,63 @@ html_content = """<!DOCTYPE html>
 
   <!-- SECTION 2 -->
   <h2>2. Three-Tier Hierarchical Routing Architecture</h2>
+
+  <div class="highlight-card" style="border-left-color: #2563eb; background: #f0fdf4; border: 1pt solid #bbf7d0; padding: 12px 14px; margin: 10px 0 12px 0;">
+    <p style="font-size: 9.6pt; font-weight: 700; color: #166534; margin: 0 0 6px 0;">
+      Executing all 17 defense-in-depth layers simultaneously creates astronomical computational overhead and processing latency. AF-MCP v2 introduces an optimized, production-ready Tiered Failover Strategy:
+    </p>
+    <div style="font-size: 8.5pt; color: #334155; line-height: 1.45;">
+      Under nominal operational conditions, real-time traffic is actively processed and verified using only the primary high-performance layers (L1 Module-LWE and L3 Binary SDP). Deeper, computationally intensive mathematical layers remain in dormant standby, dynamically summoned only upon algebraic anomalies, side-channel alarms, or cryptographic attack indicators.
+    </div>
+  </div>
+
+  <div class="code-box" style="background: #020617; border: 1pt solid #1e293b; color: #93c5fd; font-size: 6.8pt; line-height: 1.32; padding: 10px 12px; margin: 8px 0 14px 0;">
+                       ┌────────────────────────────────────────┐
+                       │        Incoming Ciphertext (CT)        │
+                       └───────────────────┬────────────────────┘
+                                           │
+                                           ▼
+                                ┌──────────────────────┐
+                                │   Replay Registry    │──(Duplicate)──► Constant-Time Reject
+                                │  (SHA3 Fingerprint)  │
+                                └──────────┬───────────┘
+                                           │ (Fresh)
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │        T-1: Active Tier (L1+L3)        │
+                       │  • Module-LWE (ISW unmask + NTT)       │
+                       │  • Binary Syndrome Decoding (He=s)     │
+                       │  • IND-CCA2 Fujisaki-Okamoto Re-enc    │
+                       └───────────────────┬────────────────────┘
+                                           │
+                           Pass Nominal    │ Algebraic Anomaly / Tag Mismatch
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │       T-2: Failover Tier (L6+L12)      │
+                       │  • Non-Abelian Quaternions (QAC)       │
+                       │  • CSIDH Supersingular Isogenies       │
+                       └───────────────────┬────────────────────┘
+                                           │
+                         Recovered via T-2 │ Second Failure / Active Intrusion
+                                           ▼
+                       ┌────────────────────────────────────────┐
+                       │     T-3: Cold Sovereign Tier (L11-L17) │
+                       │  • Artin Braid Group B₈ (Topological)  │
+                       │  • Symmetric Group Ring Z_q[S₈]        │
+                       │  • GF(2²⁵⁶) Polynomial Commitments     │
+                       │  • Recursive ZK-STARK DAG Accumulator  │
+                       │  • Grover Reversal Quantum Tarpit      │
+                       │  • Adversarial Honeypot Trap           │
+                       │  • CONFIRM-TAG-17L Master Sponge Tag   │
+                       └───────────────────┬────────────────────┘
+                                           │
+                                           ▼ (Breach Confirmed)
+                       ┌────────────────────────────────────────┐
+                       │        SYSTEM-WIDE LOCKDOWN            │
+                       │  • Monotonic Non-Downgradable FSM      │
+                       │  • Constant-time dummy SHA3 absorbed   │
+                       └────────────────────────────────────────┘
+  </div>
   
   <div class="tier-box tier-1">
     <div class="tier-title">
