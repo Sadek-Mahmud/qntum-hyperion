@@ -41,3 +41,13 @@ jobs:
 
     - name: Run NIST SP 800-22 Statistical Tests
       run: python simulations/sim_nist_sts.py
+
+    - name: Build C++ Hardware Constant-Time Shim
+      run: |
+        c++ -O0 -std=c++17 -shared -fPIC -o src/qntum_pqc/af_mcp_v2_ct.so src/qntum_pqc/af_mcp_v2_ct.cpp
+        ln -sf src/qntum_pqc/af_mcp_v2_ct.so af_mcp_v2_ct.so
+
+    - name: Run AF-MCP v2 Verification Suite (33 Tests)
+      run: |
+        pip install pytest
+        python -m pytest test_af_mcp_v2.py -v

@@ -68,8 +68,25 @@ from .gf2_commitment_layer import BinaryExtensionCommitment, GF2_256
 from .stark_accumulator_layer import RecursiveSTARKAccumulator
 from .grover_tarpit_layer import GroverReversalTarpit
 from .honeypot_layer import AdversarialHoneypot
+from .af_mcp import (
+    AdaptiveFailoverCryptoPipeline,
+    ActiveTierEngine,
+    FailoverTierEngine,
+    ColdTierEngine,
+    KeyReconstructionEngine,
+    DecapsResult,
+    SessionState,
+    AnomalyEvent,
+    TierLevel,
+    ThreatLevel,
+    AnomalyType,
+    SecurityException,
+    CriticalFailureException,
+    ReplayException,
+    build_pipeline,
+)
 
-__version__ = "8.0.0-SEPTEM-TITAN-17L"
+__version__ = "9.0.0-SEPTEM-TITAN-17L-AFMCP"
 __all__ = [
     # Core KEM
     "HyperionKEM", "HyperionPublicKey", "HyperionSecretKey", "HyperionCiphertext",
@@ -84,6 +101,12 @@ __all__ = [
     "PlanetaryQuantumMesh", "ArtinBraidGroup", "SupersingularIsogenyAction",
     "SymmetricGroupRing", "BinaryExtensionCommitment", "GF2_256", "RecursiveSTARKAccumulator",
     "GroverReversalTarpit", "AdversarialHoneypot",
+    # AF-MCP Adaptive Failover Pipeline
+    "AdaptiveFailoverCryptoPipeline", "build_pipeline",
+    "ActiveTierEngine", "FailoverTierEngine", "ColdTierEngine",
+    "KeyReconstructionEngine", "DecapsResult", "SessionState", "AnomalyEvent",
+    "TierLevel", "ThreatLevel", "AnomalyType",
+    "SecurityException", "CriticalFailureException", "ReplayException",
     # Parameters
     "CLASSICAL_SECURITY_BITS", "QUANTUM_SECURITY_BITS", "BKZ_BLOCK_SIZE_BETA",
     "LATTICE_DIMENSION", "CODE_N", "CODE_K", "CODE_T", "P_QUAT",
