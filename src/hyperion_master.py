@@ -84,7 +84,7 @@ def hyperion_keygen(security_bits: int = 256) -> Tuple[dict, dict]:
 
     # Layer 9: Shamir (3,5) shares
     master_secret = secrets.token_bytes(KEY_LEN)
-    shares = shamir_split(master_secret, threshold=3, total=5)
+    shares = shamir_split(master_secret[:16], threshold=3, total=5)
     sk[9] = shares
     pk[9] = b"shamir-public"
 

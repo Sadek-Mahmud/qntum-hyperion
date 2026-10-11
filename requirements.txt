@@ -1,0 +1,7 @@
+# Requirements for QNTUM-HYPERION
+# All dependencies are Python stdlib — no external packages needed
+# Python >= 3.10 required
+
+# Optional for extended benchmarks:
+# numpy>=1.24.0
+# scipy>=1.10.0
