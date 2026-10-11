@@ -4,7 +4,7 @@
 > *Mathematical Verification, Simulation Proofs, and Reference Implementation*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Paper: IEEE Access](https://img.shields.io/badge/Paper-IEEE%20Access%202026-green.svg)](#citation)
+[![Paper: IEEE Access](https://img.shields.io/badge/Paper-IEEE%20Access%202026%20(PDF)-green.svg)](docs/QNTUM_HYPERION_IEEE_Access_Paper.pdf)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-yellow.svg)](https://python.org)
 [![Security: Post-Quantum](https://img.shields.io/badge/Security-Post--Quantum-red.svg)](#architecture)
 
@@ -52,50 +52,40 @@ layers spanning:
 
 ```
 qntum-hyperion/
-├── README.md                  ← This file
-├── LICENSE                    ← MIT License
-├── src/
-│   ├── hyperion_master.py     ← Master key combiner (KMAC256)
-│   └── layers/
-│       ├── layer01_mlwe.py    ← Module-LWE KEM (Layer 1)
-│       ├── layer02_mvq.py     ← Multivariate cubic (Layer 2)
-│       ├── layer03_sdc.py     ← Syndrome decoding (Layer 3)
-│       ├── layer04_keccak.py  ← SHA3/SHAKE-512 (Layer 4)
-│       ├── layer05_vernam.py  ← 8-path Vernam cascade (Layer 5)
-│       ├── layer07_e91.py     ← E91 QKD simulation (Layer 7)
-│       ├── layer08_otp.py     ← Shannon OTP (Layer 8)
-│       ├── layer09_shamir.py  ← Shamir (3,5) sharing (Layer 9)
-│       └── layer16_grt.py     ← Grover Reversal Tarpit (Layer 16)
-├── proofs/
-│   ├── proof_layer01_mlwe.py  ← Module-LWE security reduction proof
-│   ├── proof_layer03_sdc.py   ← Syndrome decoding NP-hardness
-│   ├── proof_layer07_e91.py   ← Tsirelson bound proof (E91)
-│   ├── proof_layer08_otp.py   ← Shannon perfect secrecy proof
-│   ├── proof_layer10_brem.py  ← Bremermann limit calculation
-│   ├── proof_layer14_land.py  ← Landauer erasure energy proof
-│   └── proof_composite.py     ← Composite IND-CCA2 hybrid combiner
-├── simulations/
-│   ├── sim_grt_tarpit.py      ← GRT decoherence simulation
-│   ├── sim_aec_blind.py       ← Arbiter Epistemic Confusion sim
-│   ├── sim_entropy_cascade.py ← 8-path Vernam entropy analysis
-│   └── sim_nist_sts.py        ← NIST SP 800-22 statistical tests
-├── benchmarks/
-│   ├── bench_keygen.py        ← Key generation timing
-│   ├── bench_encaps.py        ← Encapsulation timing
-│   └── results/
-│       └── benchmark_results.json
-├── test_vectors/
-│   ├── mlwe_kat.json          ← Module-LWE Known Answer Tests
-│   ├── otp_kat.json           ← OTP Known Answer Tests
-│   ├── shamir_kat.json        ← Shamir (3,5) Known Answer Tests
-│   └── composite_kat.json     ← Full 17-layer KAT vectors
+├── README.md                              ← Repository guide and quickstart
+├── LICENSE                                ← MIT License
+├── requirements.txt                       ← Dependencies (cryptography, etc.)
 ├── docs/
-│   ├── MATHEMATICAL_PROOFS.md ← All 17-layer proofs (English)
-│   ├── SPECIFICATION.md       ← Full protocol specification
-│   └── SECURITY_AUDIT.md      ← Independent security audit report
-└── .github/
-    └── workflows/
-        └── ci.yml             ← Automated test + proof verification CI
+│   ├── QNTUM_HYPERION_IEEE_Access_Paper.pdf  ← Complete 18-page IEEE Access Paper
+│   ├── QNTUM_HYPERION_IEEE_Access_Paper.tex  ← LaTeX source (ieeeaccess template)
+│   ├── QNTUM_HYPERION_Exhaustive_Cryptographic_Audit.md ← 17-layer audit report
+│   ├── DOCUMENTATION_BN.md                ← Comprehensive documentation (Bangla)
+│   └── SPECIFICATION.md                   ← Mathematical specification
+├── src/
+│   ├── hyperion_master.py                 ← Master 17-layer key combiner (KMAC256)
+│   ├── qntum_cli.py                       ← Command-line audit and demo tool
+│   ├── quantum_vault.py                   ← Multi-cipher encrypted storage
+│   ├── quantum_adversary_sim.py           ← Shor/Grover quantum cryptanalysis
+│   ├── qntum_pqc/                         ← Complete 17-layer PQC core engine
+│   └── layers/                            ← Layer wrapper modules
+├── proofs/
+│   ├── proof_layer01_mlwe.py              ← Module-LWE Core-SVP BKZ 2.0 proof
+│   ├── proof_layer03_sdc.py               ← Syndrome decoding NP-hardness proof
+│   ├── proof_layer07_e91.py               ← E91 Tsirelson bound Bell proof
+│   ├── proof_layer08_otp.py               ← Shannon OTP mutual info I(M;C)=0 proof
+│   ├── proof_layer10_brem.py              ← Bremermann relativistic bound proof
+│   ├── proof_layer14_land.py              ← Landauer thermodynamic erasure proof
+│   └── proof_composite.py                 ← Composite IND-CCA2 hybrid proof
+├── benchmarks/
+│   ├── benchmark_and_demo.py              ← Standalone vs composite benchmarks
+│   ├── cryptanalysis_suite.py             ← Comprehensive cryptanalysis suite
+│   ├── high_scale_pqc_stress_test.py      ← High-scale throughput stress tests
+│   └── million_scale_audit_10m.py         ← 10M-round entropy & avalanche tests
+└── simulations/
+    ├── sim_grt_tarpit.py                  ← GRT decoherence simulation
+    ├── sim_aec_blind.py                   ← Epistemic channel blinding sim
+    ├── sim_entropy_cascade.py             ← 8-path Vernam entropy analysis
+    └── sim_nist_sts.py                    ← NIST SP 800-22 statistical testbed
 ```
 
 ---
