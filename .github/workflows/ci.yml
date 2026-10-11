@@ -1,0 +1,43 @@
+name: QNTUM-HYPERION CI — Proof Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify-proofs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Run Layer 8 — OTP Perfect Secrecy Proof
+      run: python src/layers/layer08_otp.py
+
+    - name: Run Layer 9 — Shamir (3,5) Secret Sharing Proof
+      run: python src/layers/layer09_shamir.py
+
+    - name: Run Layer 16 — GRT Decoherence Simulation
+      run: python src/layers/layer16_grt.py
+
+    - name: Run Layer 7 — E91 Tsirelson Bound Proof
+      run: python proofs/proof_layer07_e91.py
+
+    - name: Run Layer 10/14 — Bremermann/Landauer Proof
+      run: python proofs/proof_layer10_brem.py
+
+    - name: Run Composite Security Proof
+      run: python proofs/proof_composite.py
+
+    - name: Run NIST SP 800-22 Statistical Tests
+      run: python simulations/sim_nist_sts.py
